@@ -1,34 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>课程表</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算机网络课表</title>
     <style>
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 1px 15px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .classroom {
+            color: #27ae60;
+            font-weight: 500;
+        }
+
+        .teacher {
+            color: #e67e22;
+        }
     </style>
 </head>
 <body>
-    <h1>计算机网络技术及应用课程表</h1>
+    <h1>计算机网络技术及应用课程表 (2024-2025)</h1>
+    
     <table>
-        <tr>
-            <th>课程名称</th>
-            <th>课程代码</th>
-            <th>班级名称</th>
-            <th>节次</th>
-            <th>周次</th>
-            <th>教室</th>
-            <th>任课教师</th>
-        </tr>
-        <tr>
-            <td>计算机网络技术及应用</td>
-            <td>MESE5361</td>
-            <td>轮机2401-2</td>
-            <td>9 - 12</td>
-            <td>3 - 3</td>
-            <td>计算机开发实验室（工程实践创新中心A座）</td>
-            <td>余文勇（副教授）</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>课程名称</th>
+                <th>课程代码</th>
+                <th>班级名称</th>
+                <th>上课日</th>
+                <th>节次</th>
+                <th>周次</th>
+                <th class="classroom">教室</th>
+                <th class="teacher">任课教师</th>
+                <th>课时数</th>
+                <th>学生数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>计算机网络技术及应用</td>
+                <td>MESE5361</td>
+                <td>轮机2401-2</td>
+                <td>星期四</td>
+                <td>9 - 12节</td>
+                <td>第3周</td>
+                <td class="classroom">计算机开发实验室<br>(工程实践创新中心A座)</td>
+                <td class="teacher">余文勇（副教授）</td>
+                <td>12</td>
+                <td>42</td>
+            </tr>
+            <!-- 更多课程行可在此添加 -->
+        </tbody>
     </table>
 </body>
 </html>
