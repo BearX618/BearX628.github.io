@@ -1,38 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>职位申请表</title>
     <style>
-        form { max-width: 500px; margin: 20px auto; }
-        fieldset { margin-bottom: 15px; padding: 10px; }
-        label { display: block; margin: 8px 0; }
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        fieldset {
+            border: 2px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            padding: 20px;
+        }
+
+        legend {
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 0 10px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0;
+            color: #555;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        button {
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .button-group {
+            text-align: right;
+            margin-top: 25px;
+        }
+
+        button + button {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
     <h1>职位申请表</h1>
-    <form>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
         <fieldset>
             <legend>基本信息</legend>
-            <label>姓名：<input type="text" name="name"></label>
             
-            <label>感兴趣的职位：</label>
-            <label><input type="radio" name="job" value="design"> Web设计人员</label>
-            <label><input type="radio" name="job" value="manage"> Web管理人员</label>
-            <label><input type="radio" name="job" value="develop"> Web开发人员</label>
+            <label>
+                姓名：
+                <input type="text" name="name" required placeholder="请输入全名">
+            </label>
+
+            <div class="radio-group">
+                <p>感兴趣的职位：</p>
+                <label>
+                    <input type="radio" name="position" value="design" required>
+                    Web设计人员
+                </label>
+                <label>
+                    <input type="radio" name="position" value="manage">
+                    Web管理人员
+                </label>
+                <label>
+                    <input type="radio" name="position" value="develop">
+                    Web开发人员
+                </label>
+            </div>
         </fieldset>
 
         <fieldset>
             <legend>其他要求</legend>
-            <textarea name="requirements" rows="4" cols="50" placeholder="包括薪水待遇、工作地点等"></textarea>
+            <label>
+                具体要求：
+                <textarea name="requirements" rows="5" 
+                    placeholder="请说明薪资期望、工作地点等要求"></textarea>
+            </label>
         </fieldset>
 
         <fieldset>
-            <label><input type="checkbox" name="confirm"> 发送确认消息</label>
-            <label>经验：<input type="radio" name="experience" checked> 无经验</label>
+            <label>
+                <input type="checkbox" name="confirmation" required>
+                我确认以上信息真实有效
+            </label>
+            
+            <label>
+                <input type="radio" name="experience" value="none" checked>
+                无相关工作经验
+            </label>
         </fieldset>
 
-        <button type="submit">确定</button>
-        <button type="reset">重置</button>
+        <div class="button-group">
+            <button type="submit">提交申请</button>
+            <button type="reset">重置表单</button>
+        </div>
     </form>
 </body>
 </html>
