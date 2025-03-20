@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>职位申请表</title>
+    <style>
+        form { max-width: 500px; margin: 20px auto; }
+        fieldset { margin-bottom: 15px; padding: 10px; }
+        label { display: block; margin: 8px 0; }
+    </style>
+</head>
+<body>
+    <h1>职位申请表</h1>
+    <form>
+        <fieldset>
+            <legend>基本信息</legend>
+            <label>姓名：<input type="text" name="name"></label>
+            
+            <label>感兴趣的职位：</label>
+            <label><input type="radio" name="job" value="design"> Web设计人员</label>
+            <label><input type="radio" name="job" value="manage"> Web管理人员</label>
+            <label><input type="radio" name="job" value="develop"> Web开发人员</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>其他要求</legend>
+            <textarea name="requirements" rows="4" cols="50" placeholder="包括薪水待遇、工作地点等"></textarea>
+        </fieldset>
+
+        <fieldset>
+            <label><input type="checkbox" name="confirm"> 发送确认消息</label>
+            <label>经验：<input type="radio" name="experience" checked> 无经验</label>
+        </fieldset>
+
+        <button type="submit">确定</button>
+        <button type="reset">重置</button>
+    </form>
+</body>
+</html>
