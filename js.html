@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS演示</title>
+</head>
+<body>
+    <h1>JavaScript功能演示</h1>
+    
+    <button onclick="showDialog()">弹出对话框</button>
+    <button onclick="changeColor()">改变背景色</button>
+    <div id="timeDisplay"></div>
+
+    <script>
+        // 显示对话框
+        function showDialog() {
+            alert("这是一个弹出对话框！");
+        }
+
+        // 改变背景颜色
+        function changeColor() {
+            const color = prompt("请输入颜色（英文）：", "lightblue");
+            document.body.style.backgroundColor = color;
+        }
+
+        // 显示当前时间
+        function updateTime() {
+            document.getElementById("timeDisplay").innerHTML = "当前时间：" + new Date().toLocaleString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime(); // 初始化显示时间
+    </script>
+</body>
+</html>
