@@ -1,3 +1,3 @@
-- 校级一等奖学金, 2022.  
+- 军训优秀营员  
 
-- Outstanding Graduation Thesis, XXX University, 2023. 
+- 百舸骨干营员 
