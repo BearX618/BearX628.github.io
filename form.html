@@ -5,53 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>职位申请表</title>
     <style>
-        /* 基础样式保持不变 */
-        :root { --primary-color: #2c3e50; --secondary-color: #3498db; }
-        body { font-family: 'Helvetica Neue', Arial; max-width: 800px; margin: 20px auto; }
-        
-        /* 复合选择栏专用样式 */
-        .composite-fieldset {
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #27ae60;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        fieldset {
             border: 2px solid #eee;
             border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
+            margin-bottom: 25px;
+            padding: 20px;
         }
 
-        .experience-tier {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 10px;
-            align-items: center;
-            margin: 10px 0;
+        legend {
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 0 10px;
+            font-size: 1.1em;
         }
 
-        .experience-details {
-            display: none;
-            border-left: 3px solid #3498db;
-            padding-left: 15px;
-            margin: 10px 0;
-        }
-
-        input[type="radio"]:checked ~ .experience-details {
+        label {
             display: block;
+            margin: 15px 0;
+            color: #555;
         }
 
-        .skill-tags {
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        /* 自定义单选按钮样式 */
+        .radio-group {
+            margin: 15px 0;
+            padding-left: 15px;
+        }
+
+        .radio-option {
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+            align-items: center;
+            margin: 12px 0;
         }
 
-        .skill-tag {
-            background: #f0f0f0;
-            padding: 5px 12px;
-            border-radius: 15px;
-            cursor: pointer;
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            accent-color: var(--secondary-color);
         }
 
-        .skill-tag.active {
-            background: #3498db;
+        /* 按钮样式 */
+        .button-group {
+            text-align: right;
+            margin-top: 30px;
+        }
+
+        button {
+            background: var(--secondary-color);
             color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        button[type="reset"] {
+            background: #95a5a6;
+            margin-left: 15px;
+        }
+
+        .required::after {
+            content: "*";
+            color: #e74c3c;
+            margin-left: 3px;
         }
     </style>
 </head>
@@ -59,80 +128,71 @@
     <h1>职位申请表</h1>
     
     <form action="https://formspree.io/f/your-form-id" method="POST">
-        <!-- 其他字段保持不变 -->
-
-        <!-- 复合式工作经验选择栏 -->
-        <fieldset class="composite-fieldset">
-            <legend>工作经验评估</legend>
+        <!-- 基本信息 -->
+        <fieldset>
+            <legend>基本信息 <span class="required"></span></legend>
             
-            <div class="experience-tier">
-                <input type="radio" name="experience" id="exp-none" value="none" checked>
-                <label for="exp-none">
-                    <strong>无相关工作经验</strong>
-                    <p class="hint">应届毕业生或转行人员选择此项</p >
-                </label>
-            </div>
+            <label>
+                姓名：
+                <input type="text" name="name" required placeholder="请输入您的全名">
+            </label>
 
-            <div class="experience-tier">
-                <input type="radio" name="experience" id="exp-junior" value="junior">
-                <label for="exp-junior">
-                    <strong>初级经验 (1-3年)</strong>
-                    <p class="hint">请填写以下详细信息</p >
-                    <div class="experience-details">
-                        <label>
-                            主要技术栈：
-                            <div class="skill-tags">
-                                <span class="skill-tag">HTML/CSS</span>
-                                <span class="skill-tag">JavaScript</span>
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">Java</span>
-                                <input type="text" name="skills" hidden>
-                            </div>
-                        </label>
-                        <label>
-                            项目经验：
-                            <input type="number" name="projects" min="0" placeholder="参与项目数量">
-                        </label>
-                    </div>
+            <div class="radio-group">
+                <label>感兴趣的职位：</label>
+                <label class="radio-option">
+                    <input type="radio" name="position" value="design" required>
+                    Web设计人员
                 </label>
-            </div>
-
-            <div class="experience-tier">
-                <input type="radio" name="experience" id="exp-senior" value="senior">
-                <label for="exp-senior">
-                    <strong>资深经验 (3年以上)</strong>
-                    <div class="experience-details">
-                        <label>
-                            技术认证：
-                            <input type="text" name="certifications" placeholder="例：AWS认证,PMP认证">
-                        </label>
-                        <label>
-                            团队规模：
-                            <select name="team_size">
-                                <option value="">-- 请选择 --</option>
-                                <option value="1-5">1-5人</option>
-                                <option value="6-10">6-10人</option>
-                                <option value="10+">10人以上</option>
-                            </select>
-                        </label>
-                    </div>
+                <label class="radio-option">
+                    <input type="radio" name="position" value="manage">
+                    Web管理人员
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="position" value="develop">
+                    Web开发人员
                 </label>
             </div>
         </fieldset>
 
-        <!-- 其他字段保持不变 -->
-    </form>
+        <!-- 其他要求 -->
+        <fieldset>
+            <legend>具体要求</legend>
+            <label>
+                详细说明：
+                <textarea name="requirements" rows="5" 
+                    placeholder="请说明薪资期望、工作地点等要求"></textarea>
+            </label>
+        </fieldset>
 
-    <script>
-        // 技能标签选择
-        document.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.addEventListener('click', () => {
-                tag.classList.toggle('active');
-                const selected = Array.from(document.querySelectorAll('.skill-tag.active'))
-                                     .map(t => t.textContent);
-                document.querySelector('[name="skills"]').value = selected.join(',');
-            });
-        });
-    </script>
+        <!-- 其他信息 -->
+        <fieldset>
+            <legend>其他信息</legend>
+            
+            <!-- 工作经验 -->
+            <div class="radio-group">
+                <label>工作经验：</label>
+                <label class="radio-option">
+                    <input type="radio" name="experience" value="none" checked>
+                    无相关工作经验
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="experience" value="yes">
+                    有相关工作经验（请附简历）
+                </label>
+            </div>
+
+            <!-- 确认条款 -->
+            <label class="radio-option">
+                <input type="checkbox" name="confirmation" required>
+                我确认以上信息真实有效 <span class="required"></span>
+            </label>
+        </fieldset>
+
+        <!-- 按钮组 -->
+        <div class="button-group">
+            <button type="submit">立即申请</button>
+            <button type="reset">重置表单</button>
+        </div>
+    </form>
 </body>
 </html>
