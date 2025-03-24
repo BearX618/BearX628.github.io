@@ -6,193 +6,218 @@
     <title>职位申请表</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --success-color: #27ae60;
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --border: #e0e0e0;
         }
 
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 20px;
-            background-color: #f8f9fa;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        form {
-            background: #fff;
-            padding: 30px;
+        .form-card {
+            background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            padding: 2rem;
         }
 
-        fieldset {
-            border: 2px solid #eee;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            padding: 20px;
-        }
-
-        legend {
-            color: var(--primary-color);
-            font-weight: 600;
-            padding: 0 10px;
-            font-size: 1.1em;
+        .form-group {
+            margin-bottom: 1.5rem;
         }
 
         label {
             display: block;
-            margin: 15px 0;
-            color: #555;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
         }
 
-        input[type="text"],
-        textarea {
+        input[type="text"] {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            margin-top: 8px;
+            padding: 0.8rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
             transition: all 0.3s ease;
-            font-size: 16px;
         }
 
-        input:focus,
-        textarea:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+        input[type="text"]:focus {
+            border-color: var(--accent);
             outline: none;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
         }
 
-        /* 自定义单选按钮样式 */
         .radio-group {
-            margin: 15px 0;
-            padding-left: 15px;
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
         }
 
-        .radio-option {
+        .radio-item {
             display: flex;
             align-items: center;
-            margin: 12px 0;
+            gap: 0.5rem;
         }
 
-        input[type="radio"] {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            accent-color: var(--secondary-color);
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
         }
 
-        /* 按钮样式 */
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .experience-toggle {
+            background: #f8f9fa;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .experience-toggle:hover {
+            border-color: var(--accent);
+        }
+
+        .experience-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent);
+            margin-top: 1rem;
+        }
+
+        .expanded .experience-details {
+            max-height: 200px;
+        }
+
         .button-group {
-            text-align: right;
-            margin-top: 30px;
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         button {
-            background: var(--secondary-color);
-            color: white;
-            padding: 12px 30px;
+            flex: 1;
+            padding: 0.8rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
+            font-weight: 500;
             cursor: pointer;
-            font-size: 16px;
             transition: all 0.3s ease;
+        }
+
+        button[type="submit"] {
+            background: var(--accent);
+            color: white;
+        }
+
+        button[type="reset"] {
+            background: #f0f0f0;
+            color: var(--primary);
         }
 
         button:hover {
             opacity: 0.9;
             transform: translateY(-1px);
         }
-
-        button[type="reset"] {
-            background: #95a5a6;
-            margin-left: 15px;
-        }
-
-        .required::after {
-            content: "*";
-            color: #e74c3c;
-            margin-left: 3px;
-        }
     </style>
 </head>
 <body>
-    <h1>职位申请表</h1>
-    
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-        <!-- 基本信息 -->
-        <fieldset>
-            <legend>基本信息 <span class="required"></span></legend>
-            
-            <label>
-                姓名：
-                <input type="text" name="name" required placeholder="请输入您的全名">
-            </label>
-
-            <div class="radio-group">
-                <label>感兴趣的职位：</label>
-                <label class="radio-option">
-                    <input type="radio" name="position" value="design" required>
-                    Web设计人员
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="position" value="manage">
-                    Web管理人员
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="position" value="develop">
-                    Web开发人员
-                </label>
-            </div>
-        </fieldset>
-
-        <!-- 其他要求 -->
-        <fieldset>
-            <legend>具体要求</legend>
-            <label>
-                详细说明：
-                <textarea name="requirements" rows="5" 
-                    placeholder="请说明薪资期望、工作地点等要求"></textarea>
-            </label>
-        </fieldset>
-
-        <!-- 其他信息 -->
-        <fieldset>
-            <legend>其他信息</legend>
-            
-            <!-- 工作经验 -->
-            <div class="radio-group">
-                <label>工作经验：</label>
-                <label class="radio-option">
-                    <input type="radio" name="experience" value="none" checked>
-                    无相关工作经验
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="experience" value="yes">
-                    有相关工作经验（请附简历）
-                </label>
+    <div class="form-card">
+        <h1>职位申请表</h1>
+        
+        <form>
+            <!-- 姓名 -->
+            <div class="form-group">
+                <label for="name">姓名</label>
+                <input type="text" id="name" required placeholder="请输入您的姓名">
             </div>
 
-            <!-- 确认条款 -->
-            <label class="radio-option">
-                <input type="checkbox" name="confirmation" required>
-                我确认以上信息真实有效 <span class="required"></span>
-            </label>
-        </fieldset>
+            <!-- 职位选择 -->
+            <div class="form-group">
+                <label>感兴趣的职位</label>
+                <div class="radio-group">
+                    <label class="radio-item">
+                        <input type="radio" name="position" value="design" required>
+                        Web设计人员
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="position" value="manage">
+                        Web管理人员
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="position" value="develop">
+                        Web开发人员
+                    </label>
+                </div>
+            </div>
 
-        <!-- 按钮组 -->
-        <div class="button-group">
-            <button type="submit">立即申请</button>
-            <button type="reset">重置表单</button>
-        </div>
-    </form>
+            <!-- 其他要求 -->
+            <div class="form-group">
+                <label for="requirements">其他要求</label>
+                <textarea id="requirements" placeholder="包括薪水待遇、工作地点等"></textarea>
+            </div>
+
+            <!-- 经验选择 -->
+            <div class="form-group">
+                <div class="experience-toggle" onclick="toggleExperience()">
+                    <div class="radio-item">
+                        <input type="radio" name="experience" id="exp-none" checked>
+                        <span>无相关工作经验</span>
+                    </div>
+                    <div class="experience-details">
+                        <label class="radio-item" style="margin-top: 1rem;">
+                            <input type="radio" name="experience" id="exp-some">
+                            <span>有相关工作经验</span>
+                        </label>
+                        <div style="margin-left: 2rem; margin-top: 1rem;">
+                            <label>工作年限：
+                                <input type="number" min="1" placeholder="年">
+                            </label>
+                            <label style="margin-top: 0.5rem; display: block;">
+                                相关技能：
+                                <input type="text" placeholder="请输入掌握的技能">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 确认选项 -->
+            <div class="form-group">
+                <label class="radio-item">
+                    <input type="checkbox" checked>
+                    发送确认消息
+                </label>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="button-group">
+                <button type="submit">提交申请</button>
+                <button type="reset">重置表单</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleExperience() {
+            const toggle = document.querySelector('.experience-toggle');
+            toggle.classList.toggle('expanded');
+        }
+    </script>
 </body>
 </html>
