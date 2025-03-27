@@ -112,32 +112,13 @@
             </div>
 
             <!-- 工作经验 -->
-            <div class="form-group">
-                <label>工作经验</label>
-                <div class="radio-group vertical">
-                    <label class="radio-item">
-                        <input type="radio" name="experience" value="none" checked>
-                        无相关工作经验
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="experience" value="yes">
-                        有相关工作经验
-                        <div class="experience-details">
-                            <div style="margin-top: 1rem;">
-                                <label>工作年限：
-                                    <input type="number" name="years" min="1" placeholder="年">
-                                </label>
-                            </div>
-                            <div style="margin-top: 1rem;">
-                                <label>相关技能：
-                                    <input type="text" name="skills" placeholder="请输入掌握的技能">
-                                </label>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-
+<label for="experience">经验：</label>
+        <select id="experience" name="experience" required>
+            <option value="无经验">无经验</option>
+            <option value="1-3年">1-3年</option>
+            <option value="3-5年">3-5年</option>
+            <option value="5年以上">5年以上</option>
+        </select><br><br>
             <!-- 确认选项 -->
             <div class="form-group">
                 <label class="radio-item">
